@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Task = System.Threading.Tasks.Task;
 
-namespace PublishToNuget.Command
+namespace PublishToNugetV2
 {
     /// <summary>
     /// Command handler
@@ -22,7 +22,7 @@ namespace PublishToNuget.Command
         /// <summary>
         /// Command menu group (command set GUID).
         /// </summary>
-        public static readonly Guid CommandSet = new Guid("2ba49724-94f9-4556-b91a-e9954dbdd0fe");
+        public static readonly Guid CommandSet = new Guid("2c15dec0-8061-42ab-9994-5ce9c964104c");
 
         /// <summary>
         /// VS Package that provides this command, not null.

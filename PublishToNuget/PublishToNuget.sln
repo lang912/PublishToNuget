@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishToNuget", "PublishToNuget\PublishToNuget.csproj", "{FED8D72D-41E4-4DE2-BD29-8B0DA7BC02E5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublishToNugetV2", "PublishToNugetV2\PublishToNugetV2.csproj", "{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,14 @@ Global
 		{FED8D72D-41E4-4DE2-BD29-8B0DA7BC02E5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FED8D72D-41E4-4DE2-BD29-8B0DA7BC02E5}.Release|x86.ActiveCfg = Release|x86
 		{FED8D72D-41E4-4DE2-BD29-8B0DA7BC02E5}.Release|x86.Build.0 = Release|x86
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Debug|x86.ActiveCfg = Debug|x86
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Debug|x86.Build.0 = Debug|x86
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Release|x86.ActiveCfg = Release|x86
+		{C3E172E9-B1C5-43C6-B361-ED2E5C607E86}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
