@@ -32,7 +32,7 @@ namespace PublishToNugetV2.UI
                 cbPackageSource.Items.Clear();
                 foreach (var sc in sources)
                 {
-                    cbPackageSource.Items.Add(sc);
+                    cbPackageSource.Items.Add(sc.Value);
                 }
 
                 if (string.IsNullOrWhiteSpace(settingInfo.SelectedPackageSource))
