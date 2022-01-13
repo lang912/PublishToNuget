@@ -118,48 +118,48 @@ namespace PublishToNugetV2.UI
 
         private void btn_EditDependencies_Click(object sender, EventArgs e)
         {
-            //var form = new PackageDependenciesForm();
-            //form.Ini(_projModel.PackageInfo?.DependencyGroups?.ToList() ?? new List<PackageDependencyGroup>(), _projModel.PackageInfo?.Id ?? string.Empty, _projModel.NetFrameworkVersion);
-            //PackageDependenciesForm.SaveDependencyEvent = list =>
-            //{
-            //    try
-            //    {
-            //        if (_projModel.PackageInfo == null)
-            //        {
-            //            _projModel.PackageInfo = new ManifestMetadata
-            //            {
-            //                Authors = new List<string> { _projModel.Author },
-            //                ContentFiles = new List<ManifestContentFiles>(),
-            //                Copyright = $"CopyRight © {_projModel.Author} {DateTime.Now:yyyy-MM-dd HH:mm:ss}",
-            //                DependencyGroups = new List<PackageDependencyGroup>(),
-            //                Description = _projModel.Desc,
-            //                DevelopmentDependency = false,
-            //                FrameworkReferences = new List<FrameworkAssemblyReference>(),
-            //                Id = _projModel.LibName,
-            //                Language = null,
-            //                MinClientVersionString = "1.0.0.0",
-            //                Owners = new List<string> { _projModel.Author },
-            //                PackageAssemblyReferences = new List<PackageReferenceSet>(),
-            //                PackageTypes = new List<PackageType>(),
-            //                ReleaseNotes = null,
-            //                Repository = null,
-            //                RequireLicenseAcceptance = false,
-            //                Serviceable = false,
-            //                Summary = null,
-            //                Tags = string.Empty,
-            //                Title = _projModel.LibName,
-            //                Version = NuGetVersion.Parse(_projModel.Version),
-            //            };
-            //        }
-            //        _projModel.PackageInfo.DependencyGroups = list;
-            //        refreshDepency();
-            //    }
-            //    catch (Exception exception)
-            //    {
-            //        MessageBox.Show(exception.Message);
-            //    }
-            //};
-            //form.ShowDialog();
+            var form = new PackageDependenciesForm();
+            form.Ini(_projModel.PackageInfo?.DependencyGroups?.ToList() ?? new List<PackageDependencyGroup>(), _projModel.PackageInfo?.Id ?? string.Empty, _projModel.NetFrameworkVersion);
+            PackageDependenciesForm.SaveDependencyEvent = list =>
+            {
+                try
+                {
+                    if (_projModel.PackageInfo == null)
+                    {
+                        _projModel.PackageInfo = new ManifestMetadata
+                        {
+                            Authors = new List<string> { _projModel.Author },
+                            ContentFiles = new List<ManifestContentFiles>(),
+                            Copyright = $"CopyRight © {_projModel.Author} {DateTime.Now:yyyy-MM-dd HH:mm:ss}",
+                            DependencyGroups = new List<PackageDependencyGroup>(),
+                            Description = _projModel.Desc,
+                            DevelopmentDependency = false,
+                            FrameworkReferences = new List<FrameworkAssemblyReference>(),
+                            Id = _projModel.LibName,
+                            Language = null,
+                            MinClientVersionString = "1.0.0.0",
+                            Owners = new List<string> { _projModel.Author },
+                            PackageAssemblyReferences = new List<PackageReferenceSet>(),
+                            PackageTypes = new List<PackageType>(),
+                            ReleaseNotes = null,
+                            Repository = null,
+                            RequireLicenseAcceptance = false,
+                            Serviceable = false,
+                            Summary = null,
+                            Tags = string.Empty,
+                            Title = _projModel.LibName,
+                            Version = NuGetVersion.Parse(_projModel.Version),
+                        };
+                    }
+                    _projModel.PackageInfo.DependencyGroups = list;
+                    refreshDepency();
+                }
+                catch (Exception exception)
+                {
+                    MessageBox.Show(exception.Message);
+                }
+            };
+            form.ShowDialog();
         }
 
         private void PublishInfoForm_Shown(object sender, EventArgs e)

@@ -72,6 +72,30 @@
     <Compile Include="UI\NugetPublishSettingsPage.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="UI\OnLinePkgListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\OnLinePkgListForm.Designer.cs">
+      <DependentUpon>OnLinePkgListForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PackageDependenciesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PackageDependenciesForm.Designer.cs">
+      <DependentUpon>PackageDependenciesForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PackageDetailsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PackageDetailsForm.Designer.cs">
+      <DependentUpon>PackageDetailsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\PackageUpdateInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\PackageUpdateInfoForm.Designer.cs">
+      <DependentUpon>PackageUpdateInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\PublishInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>

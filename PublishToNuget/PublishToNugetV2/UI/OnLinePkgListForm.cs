@@ -35,13 +35,13 @@ namespace PublishToNugetV2.UI
                     cbPackageSource.Items.Add(sc);
                 }
 
-                if (string.IsNullOrWhiteSpace(settingInfo.DefaultPackageSource))
+                if (string.IsNullOrWhiteSpace(settingInfo.SelectedPackageSource))
                 {
                     cbPackageSource.SelectedIndex = 0;
                 }
                 else
                 {
-                    cbPackageSource.SelectedItem = settingInfo.DefaultPackageSource;
+                    cbPackageSource.SelectedItem = settingInfo.SelectedPackageSource;
                 }
             }
             search(0);
