@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OnLinePkgListForm));
             this.cbPackageSource = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -134,8 +135,8 @@
             // 
             // btn_MovePre
             // 
-            // this.btn_MovePre.BackgroundImage = global::PublishPackageToNuGet2017.Properties.Resources.MovePreviousHS;
             this.btn_MovePre.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_MovePre.Image = ((System.Drawing.Image)(resources.GetObject("btn_MovePre.Image")));
             this.btn_MovePre.Location = new System.Drawing.Point(45, 7);
             this.btn_MovePre.Name = "btn_MovePre";
             this.btn_MovePre.Size = new System.Drawing.Size(26, 26);
@@ -145,8 +146,8 @@
             // 
             // btn_MoveNext
             // 
-            //this.btn_MoveNext.BackgroundImage = global::PublishPackageToNuGet2017.Properties.Resources.MoveNextHS;
             this.btn_MoveNext.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_MoveNext.Image = ((System.Drawing.Image)(resources.GetObject("btn_MoveNext.Image")));
             this.btn_MoveNext.Location = new System.Drawing.Point(105, 7);
             this.btn_MoveNext.Name = "btn_MoveNext";
             this.btn_MoveNext.Size = new System.Drawing.Size(26, 26);
@@ -156,8 +157,8 @@
             // 
             // btn_MoveToFirst
             // 
-            //this.btn_MoveToFirst.BackgroundImage = global::PublishPackageToNuGet2017.Properties.Resources.MoveFirstHS;
             this.btn_MoveToFirst.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_MoveToFirst.Image = ((System.Drawing.Image)(resources.GetObject("btn_MoveToFirst.Image")));
             this.btn_MoveToFirst.Location = new System.Drawing.Point(13, 7);
             this.btn_MoveToFirst.Name = "btn_MoveToFirst";
             this.btn_MoveToFirst.Size = new System.Drawing.Size(26, 26);

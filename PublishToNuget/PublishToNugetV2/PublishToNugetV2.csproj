@@ -102,6 +102,11 @@
     <Compile Include="UI\PublishInfoForm.Designer.cs">
       <DependentUpon>PublishInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VSPackage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
@@ -152,9 +157,17 @@
     <EmbeddedResource Include="UI\NugetPublishSettings.resx">
       <DependentUpon>NugetPublishSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\OnLinePkgListForm.resx">
+      <DependentUpon>OnLinePkgListForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\PackageDependenciesForm.resx">
+      <DependentUpon>PackageDependenciesForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VSPackage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

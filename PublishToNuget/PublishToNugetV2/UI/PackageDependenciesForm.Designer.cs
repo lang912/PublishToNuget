@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PackageDependenciesForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btn_Cancel = new System.Windows.Forms.Button();
             this.btn_ok = new System.Windows.Forms.Button();
@@ -98,7 +99,6 @@
             // 
             // btn_AddPkg
             // 
-            // this.btn_AddPkg.BackgroundImage = global::PublishPackageToNuGet2017.Properties.Resources.Add;
             this.btn_AddPkg.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_AddPkg.Location = new System.Drawing.Point(3, 4);
             this.btn_AddPkg.Name = "btn_AddPkg";
@@ -131,8 +131,8 @@
             // 
             // btn_DelGroup
             // 
-            //this.btn_DelGroup.BackgroundImage = global::PublishPackageToNuGet2017.Properties.Resources.Delete;
             this.btn_DelGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_DelGroup.Image = ((System.Drawing.Image)(resources.GetObject("btn_DelGroup.Image")));
             this.btn_DelGroup.Location = new System.Drawing.Point(101, 14);
             this.btn_DelGroup.Name = "btn_DelGroup";
             this.btn_DelGroup.Size = new System.Drawing.Size(26, 26);
@@ -142,8 +142,8 @@
             // 
             // btn_AddGroup
             // 
-            //this.btn_AddGroup.BackgroundImage = global::PublishPackageToNuGet2017.Properties.Resources.Add;
             this.btn_AddGroup.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_AddGroup.Image = ((System.Drawing.Image)(resources.GetObject("btn_AddGroup.Image")));
             this.btn_AddGroup.Location = new System.Drawing.Point(70, 14);
             this.btn_AddGroup.Name = "btn_AddGroup";
             this.btn_AddGroup.Size = new System.Drawing.Size(26, 26);
@@ -245,7 +245,6 @@
             // 
             // btn_OpenOnLinePkgListForm
             // 
-            // this.btn_OpenOnLinePkgListForm.BackgroundImage = global::PublishPackageToNuGet.Properties.Resources.Properties;
             this.btn_OpenOnLinePkgListForm.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_OpenOnLinePkgListForm.Location = new System.Drawing.Point(16, 364);
             this.btn_OpenOnLinePkgListForm.Name = "btn_OpenOnLinePkgListForm";
