@@ -30,6 +30,7 @@ namespace PublishToNugetV2.UI
         {
             try
             {
+                this.comboBoxSources.Items.Clear();
                 var sources = NuGetPkgService.GetAllPackageSources();
                 foreach (var item in sources)
                 {
