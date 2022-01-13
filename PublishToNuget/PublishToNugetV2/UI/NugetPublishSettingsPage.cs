@@ -18,6 +18,22 @@ namespace PublishToNugetV2.UI
 
         private NugetPublishSettings optionsControl;
 
+        /// <summary>
+        /// 作者
+        /// </summary>
+        public string Authour { get; set; } = "";
+
+        /// <summary>
+        /// 推送key
+        /// </summary>
+        public string PublishKey { get; set; } = "";
+
+        /// <summary>
+        /// 选中的包源
+        /// </summary>
+        public string SelectedPackageSource { get; set; }
+
+
         #endregion Fields
 
         #region Properties
@@ -43,6 +59,7 @@ namespace PublishToNugetV2.UI
                     optionsControl = new NugetPublishSettings();
                     optionsControl.Location = new Point(0, 0);
                     optionsControl.NugetPublishSettingsPage = this;
+                    optionsControl.InitNugetSource();
                 }
                 return optionsControl;
             }

@@ -173,7 +173,6 @@ namespace PublishToNuget.Tools
                     }
                 };
 
-                int a = 0;
             }
             catch (Exception exception)
             {
