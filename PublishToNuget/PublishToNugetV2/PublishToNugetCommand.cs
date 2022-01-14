@@ -40,6 +40,8 @@ namespace PublishToNugetV2
         /// </summary>
         private readonly AsyncPackage package;
 
+        public const string PublishToNuget = "PublishToNuget";
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PublishToNugetCommand"/> class.
         /// Adds our command handlers for menu (commands must exist in the command table file)
@@ -103,6 +105,7 @@ namespace PublishToNugetV2
             {
                 ThreadHelper.ThrowIfNotOnUIThread();
                 var projInfo = ThreadHelper.JoinableTaskFactory.Run(GetSelectedProjInfoAsync);
+                VsOutPutWindow.CreatePane(PublishToNuget, $"当前选中项目为：{projInfo.Name}");
                 if (projInfo == null)
                 {
                     throw new Exception("您还未选中项目");
@@ -115,9 +118,10 @@ namespace PublishToNugetV2
                 }
 
                 NugetPublishSettingsPage settingInfo = NuGetPkgService.GetSettingPage();
+                VsOutPutWindow.CreatePane(PublishToNuget, $"获取到推送设置信息：{settingInfo?.Authour}，{settingInfo?.SelectedPackageSource}，{settingInfo?.PublishKey}");
                 if (string.IsNullOrWhiteSpace(settingInfo?.PublishKey))
                 {
-                    throw new Exception("请先完善包设置信息");
+                    throw new Exception("请先推送设置信息:工具=>选项=>NugetPublishSettings");
                 }
 
                 projModel.PackageInfo = projModel.LibName.GetPackageData(settingInfo.SelectedPackageSource) ?? new ManifestMetadata
@@ -145,10 +149,10 @@ namespace PublishToNugetV2
                     Version = NuGetVersion.Parse("1.0.0.0"),
                 };
                 projModel.Author = settingInfo.Authour;
-                projModel.Owners = (projModel.PackageInfo?.Owners?.Count() == 0 || projModel.PackageInfo?.Owners == null) ? new List<string> { settingInfo.Authour } : projModel.PackageInfo?.Owners;
+                projModel.Owners = (projModel.PackageInfo?.Owners?.Count() == 0 || projModel.PackageInfo?.Owners == null || projModel.PackageInfo.Owners.ToList().Exists(p => string.IsNullOrWhiteSpace(p))) ? new List<string> { settingInfo.Authour } : projModel.PackageInfo?.Owners;
                 projModel.Desc = projModel.PackageInfo?.Description ?? string.Empty;
                 projModel.Version = (projModel.PackageInfo?.Version?.OriginalVersion).AddVersion();
-
+                VsOutPutWindow.CreatePane(PublishToNuget, "项目解析完毕");
                 // 判断包是否有依赖项组，若没有则根据当前项目情况自动添加
                 List<PackageDependencyGroup> groupsTmp = projModel.PackageInfo.DependencyGroups.ToList();
                 foreach (string targetVersion in projModel.NetFrameworkVersionList)
@@ -170,18 +174,22 @@ namespace PublishToNugetV2
                     try
                     {
                         var isSuccess = model.BuildPackage().PushToNugetSer(settingInfo.PublishKey, settingInfo.SelectedPackageSource);
-                        MessageBox.Show(isSuccess ? "推送完成" : "推送失败");
+                        string result = isSuccess ? "推送完成" : "推送失败";
+                        MessageBox.Show(result);
+                        VsOutPutWindow.CreatePane(PublishToNuget, result);
                         form.Close();
                     }
                     catch (Exception exception)
                     {
                         MessageBox.Show(exception.Message);
+                        VsOutPutWindow.CreatePane(PublishToNuget, exception.Message);
                     }
                 };
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
+                VsOutPutWindow.CreatePane(PublishToNuget, exception.Message);
             }
         }
 

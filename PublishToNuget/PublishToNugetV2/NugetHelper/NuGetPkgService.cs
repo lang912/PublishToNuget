@@ -26,7 +26,7 @@ namespace PublishToNugetV2.NugetHelper
 {
     public static class NuGetPkgService
     {
-        public static PublishToNugetCommandPackage GetSettingPackage()
+        public static PublishToNugetCommandPackage GetCommandPackage()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
             if (Package.GetGlobalService(typeof(SVsShell)) is IVsShell shell)
@@ -47,7 +47,7 @@ namespace PublishToNugetV2.NugetHelper
 
         public static IEnumerable<KeyValuePair<string, string>> GetAllPackageSources()
         {
-            IAsyncServiceProvider provider = GetSettingPackage();
+            IAsyncServiceProvider provider = GetCommandPackage();
             var componentModel = provider.GetServiceAsync(typeof(SComponentModel)).Result as IComponentModel;
             var sourceProvider = componentModel.GetService<IVsPackageSourceProvider>();
             return sourceProvider.GetSources(true, true);
@@ -144,7 +144,7 @@ namespace PublishToNugetV2.NugetHelper
 
         public static NugetPublishSettingsPage GetSettingPage()
         {
-            PublishToNugetCommandPackage package = GetSettingPackage();
+            PublishToNugetCommandPackage package = GetCommandPackage();
             return package?.GetDialogPage(typeof(NugetPublishSettingsPage)) as NugetPublishSettingsPage;
         }
 
