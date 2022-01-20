@@ -56,7 +56,7 @@
         <Parent guid="guidPublishToNugetCommandPackageCmdSet" id="MyMenuGroup" />
         <Icon guid="guidImages" id="bmpPic1" />
         <Strings>
-          <ButtonText>PublishToNuget</ButtonText>
+          <ButtonText>PublishToNugetTest</ButtonText>
         </Strings>
       </Button>
     </Buttons>
