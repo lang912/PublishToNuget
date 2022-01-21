@@ -40,7 +40,7 @@
             this.btn_AddGroup = new System.Windows.Forms.Button();
             this.listView_GroupList = new System.Windows.Forms.ListView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.tarFrameWorkCombox = new System.Windows.Forms.ComboBox();
             this.dg_PkgList = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Version = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -167,7 +167,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.tarFrameWorkCombox);
             this.groupBox1.Controls.Add(this.dg_PkgList);
             this.groupBox1.Controls.Add(this.btn_OpenOnLinePkgListForm);
             this.groupBox1.Controls.Add(this.txtTargetFramework);
@@ -180,14 +180,37 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Group details";
             // 
-            // label1
+            // tarFrameWorkCombox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(348, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(246, 12);
-            this.label1.TabIndex = 15;
-            this.label1.Text = "eg：netstandard2.0，net45，net452等";
+            this.tarFrameWorkCombox.FormattingEnabled = true;
+            this.tarFrameWorkCombox.Items.AddRange(new object[] {
+            "net35",
+            "net40",
+            "net403",
+            "net45",
+            "net451",
+            "net452",
+            "net46",
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "netstandard2.0",
+            "netstandard2.1",
+            "netcoreapp2.0",
+            "netcoreapp2.1",
+            "netcoreapp2.2",
+            "netcoreapp3.0",
+            "netcoreapp3.1",
+            "net5.0*",
+            "net6.0*"});
+            this.tarFrameWorkCombox.Location = new System.Drawing.Point(317, 15);
+            this.tarFrameWorkCombox.Name = "tarFrameWorkCombox";
+            this.tarFrameWorkCombox.Size = new System.Drawing.Size(117, 20);
+            this.tarFrameWorkCombox.TabIndex = 16;
+            this.tarFrameWorkCombox.SelectedIndexChanged += new System.EventHandler(this.tarFrameWorkCombox_SelectedIndexChanged);
             // 
             // dg_PkgList
             // 
@@ -258,7 +281,7 @@
             // 
             this.txtTargetFramework.Location = new System.Drawing.Point(139, 14);
             this.txtTargetFramework.Name = "txtTargetFramework";
-            this.txtTargetFramework.Size = new System.Drawing.Size(203, 21);
+            this.txtTargetFramework.Size = new System.Drawing.Size(172, 21);
             this.txtTargetFramework.TabIndex = 8;
             // 
             // label2
@@ -309,10 +332,10 @@
         private System.Windows.Forms.Button btn_OpenOnLinePkgListForm;
         private System.Windows.Forms.Button btn_AddPkg;
         private System.Windows.Forms.DataGridView dg_PkgList;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn Version;
         private System.Windows.Forms.DataGridViewLinkColumn Op;
         private System.Windows.Forms.DataGridViewLinkColumn Op_Upd;
+        private System.Windows.Forms.ComboBox tarFrameWorkCombox;
     }
 }

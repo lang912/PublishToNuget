@@ -405,5 +405,10 @@ namespace PublishToNugetV2.UI
             SaveDependencyEvent?.Invoke(_dependencyGroups);
             this.Close();
         }
+
+        private void tarFrameWorkCombox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.txtTargetFramework.Text = this.tarFrameWorkCombox.SelectedItem.ToString();
+        }
     }
 }
