@@ -50,7 +50,7 @@ namespace PublishToNugetV2.UI
                 foreach (PackageDependencyGroup dependencyGroup in _projModel.PackageInfo.DependencyGroups)
                 {
                     // 显示依赖组
-                    var groupName = dependencyGroup.TargetFramework.DotNetFrameworkName;
+                    var groupName = dependencyGroup.TargetFramework.GetShortFolderName();
                     Label lbGroupName = new Label
                     {
                         Text = groupName,

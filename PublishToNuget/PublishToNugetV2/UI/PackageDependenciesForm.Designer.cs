@@ -204,8 +204,8 @@
             "netcoreapp2.2",
             "netcoreapp3.0",
             "netcoreapp3.1",
-            "net5.0*",
-            "net6.0*"});
+            "net5.0",
+            "net6.0"});
             this.tarFrameWorkCombox.Location = new System.Drawing.Point(317, 15);
             this.tarFrameWorkCombox.Name = "tarFrameWorkCombox";
             this.tarFrameWorkCombox.Size = new System.Drawing.Size(117, 20);
