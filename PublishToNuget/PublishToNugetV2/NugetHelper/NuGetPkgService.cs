@@ -276,7 +276,7 @@ namespace PublishToNugetV2.NugetHelper
             var packageFile = Path.Combine(Path.GetTempPath(), $"{builder.Id}.nupkg");
             try
             {
-                using (FileStream stream = File.Create(packageFile))
+                using (FileStream stream = File.Open(packageFile, FileMode.OpenOrCreate))
                 {
                     builder.Save(stream);
                 }
