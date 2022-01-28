@@ -11,3 +11,6 @@
 /PublishToNuget/PublishToNugetV2/obj
 /PublishToNuget/PublishToNuget
 /PublishToNuget/PublishToNugetV2/bin/Release
+/PublishToNuget/NugetCore/bin/Debug/netstandard2.0
+/PublishToNuget/NugetCore/obj
+/PublishToNuget/PublishToNugetV3/obj
