@@ -218,7 +218,7 @@ namespace PublishToNugetV2.NugetHelper
 
         public static string BuildPackage(this ProjModel pkg)
         {
-            List<IPackageFile> files = new List<IPackageFile>();
+            List<ManifestFile> files = new List<ManifestFile>();
 
             if (pkg.NetFrameworkVersionList.Count >= 2)
             {
@@ -230,12 +230,12 @@ namespace PublishToNugetV2.NugetHelper
 
                 foreach (string dirname in pkg.NetFrameworkVersionList)
                 {
-                    files.AddRange(getPackageFiles(pkg, Path.Combine(pkg.LibDebugPath, dirname), dirname));
+                    files.AddRange(GetManifestFileFiles(pkg, Path.Combine(pkg.LibDebugPath, dirname), dirname));
                 }
             }
             else
             {
-                files.AddRange(getPackageFiles(pkg, pkg.LibDebugPath, pkg.NetFrameworkVersion));
+                files.AddRange(GetManifestFileFiles(pkg, pkg.LibDebugPath, pkg.NetFrameworkVersion));
             }
 
 
@@ -264,16 +264,29 @@ namespace PublishToNugetV2.NugetHelper
                 Version = NuGetVersion.Parse(pkg.Version),
             };
 
+
+
             metadata.Authors = new List<string> { pkg.Author };
             metadata.Copyright = $"CopyRight © {pkg.Author} {DateTime.Now:yyyy-MM-dd HH:mm:ss}";
             metadata.Description = pkg.Desc;
             metadata.Version = NuGetVersion.Parse(pkg.Version);
 
-            var builder = new PackageBuilder();
-            builder.Populate(metadata);
-            builder.Files.AddRange(files);
+            //var fff = Directory.GetFiles(pkg.LibDebugPath, "*", SearchOption.AllDirectories);
+            //var files =  Directory.GetFiles(pkg.LibDebugPath, "*", SearchOption.AllDirectories)
+            //.Where(f => !f.EndsWith(".nuspec"))
+            //.Select(f => new ManifestFile { Source = f, Target = "lib" })
+            //.ToList();
 
-            var packageFile = Path.Combine(Path.GetTempPath(), $"{builder.Id}.nupkg");
+            PackageBuilder builder = new PackageBuilder();
+            builder.PopulateFiles(pkg.LibDebugPath, files);
+            builder.Populate(metadata);
+            string packageFile = Path.Combine(pkg.LibDebugPath, pkg.LibName) + $"{pkg.Version}.nupkg";
+
+            //var builder = new PackageBuilder();
+            //builder.Files.AddRange(files);
+            //builder.Populate(metadata);
+
+            //var packageFile = Path.Combine(Path.GetTempPath(), $"{builder.Id}.nupkg");
             try
             {
                 using (FileStream stream = File.Open(packageFile, FileMode.OpenOrCreate))
@@ -288,21 +301,33 @@ namespace PublishToNugetV2.NugetHelper
             return packageFile;
         }
 
-        private static List<IPackageFile> getPackageFiles(this ProjModel pkg, string dirPath, string netFrameworkVersion)
+        private static List<ManifestFile> GetManifestFileFiles(this ProjModel pkg, string dirPath, string netFrameworkVersion)
         {
-            List<IPackageFile> files = new List<IPackageFile>();
+            List<ManifestFile> files = new List<ManifestFile>();
+
+            //        var files = Directory.GetFiles(packagePath, "*", SearchOption.AllDirectories)
+            //.Where(f => !f.EndsWith(".nuspec"))
+            //.Select(f => new ManifestFile { Source = f, Target = f.Replace(path, "") })
+            //.ToList();
             string dllPath = Path.Combine(dirPath, pkg.LibName + ".dll");
             string xmlPath = Path.Combine(dirPath, pkg.LibName + ".xml");
-
+            string pdbPath = Path.Combine(dirPath, pkg.LibName + ".pdb");
             if (!File.Exists(dllPath))
             {
                 throw new Exception("未找到DLL文件, 请先编译项目");
             }
-            PackageFileInfo dllFile = new PackageFileInfo("lib", pkg.LibName + ".dll", dllPath, netFrameworkVersion);
+
+            ManifestFile dllFile = new ManifestFile() { Source = dllPath, Target = $"lib\\{netFrameworkVersion}" };
             files.Add(dllFile);
             if (File.Exists(xmlPath))
             {
-                PackageFileInfo xmlFile = new PackageFileInfo("lib", pkg.LibName + ".xml", xmlPath, netFrameworkVersion);
+                ManifestFile xmlFile = new ManifestFile() { Source = xmlPath, Target = $"lib\\{netFrameworkVersion}" };
+                files.Add(xmlFile);
+            }
+
+            if (File.Exists(pdbPath))
+            {
+                ManifestFile xmlFile = new ManifestFile() { Source = pdbPath, Target = $"lib\\{netFrameworkVersion}" };
                 files.Add(xmlFile);
             }
 
@@ -313,15 +338,9 @@ namespace PublishToNugetV2.NugetHelper
         {
             var repository = PackageRepositoryFactory.CreateRepository(publishUrl);
             var updateResource = ThreadHelper.JoinableTaskFactory.Run(() => repository.GetResourceAsync<PackageUpdateResource>());
-            try
-            {
-                ThreadHelper.JoinableTaskFactory.Run(() => updateResource.Push(filePath, null, 999, false, s => publishKey, s => publishKey, true, NullLogger.Instance));
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
+
+            ThreadHelper.JoinableTaskFactory.Run(() => updateResource.Push(filePath, null, 999, false, s => publishKey, s => publishKey, true, NullLogger.Instance));
+            return true;
         }
 
         public static List<SimplePkgView> GetPkgDetailsByPkgId(this string packageSourceUrl, string pkgId)
