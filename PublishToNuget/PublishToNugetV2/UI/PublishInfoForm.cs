@@ -187,40 +187,40 @@ namespace PublishToNugetV2.UI
 
             if (updPkgList.Any())
             {
-                //PackageUpdateInfoForm form = new PackageUpdateInfoForm();
-                //form.Ini(updPkgList);
-                //PackageUpdateInfoForm.UpdPkgEvent = list =>
-                //{
-                //    if (list != null && list.Any())
-                //    {
-                //        List<PackageDependencyGroup> groups = _projModel.PackageInfo.DependencyGroups.ToList();
-                //        foreach (var item in list)
-                //        {
-                //            if (item.Value != null && item.Value.Any())
-                //            {
-                //                List<PackageDependency> pkgList = new List<PackageDependency>();
-                //                var targetFrameworkDep = groups.FirstOrDefault(n => n.TargetFramework.GetShortFolderName() == item.Key);
-                //                if (targetFrameworkDep != null)
-                //                {
-                //                    var ids = item.Value.Select(n => n.Id);
-                //                    pkgList = targetFrameworkDep.Packages.Where(n => !ids.Contains(n.Id)).ToList();
-                //                    groups.Remove(targetFrameworkDep);
-                //                }
+                PackageUpdateInfoForm form = new PackageUpdateInfoForm();
+                form.Ini(updPkgList);
+                PackageUpdateInfoForm.UpdPkgEvent = list =>
+                {
+                    if (list != null && list.Any())
+                    {
+                        List<PackageDependencyGroup> groups = _projModel.PackageInfo.DependencyGroups.ToList();
+                        foreach (var item in list)
+                        {
+                            if (item.Value != null && item.Value.Any())
+                            {
+                                List<PackageDependency> pkgList = new List<PackageDependency>();
+                                var targetFrameworkDep = groups.FirstOrDefault(n => n.TargetFramework.GetShortFolderName() == item.Key);
+                                if (targetFrameworkDep != null)
+                                {
+                                    var ids = item.Value.Select(n => n.Id);
+                                    pkgList = targetFrameworkDep.Packages.Where(n => !ids.Contains(n.Id)).ToList();
+                                    groups.Remove(targetFrameworkDep);
+                                }
 
-                //                foreach (UpdatePkgView updatePkgView in item.Value)
-                //                {
-                //                    pkgList.Add(new PackageDependency(updatePkgView.Id, VersionRange.Parse(updatePkgView.Version)));
-                //                }
+                                foreach (UpdatePkgView updatePkgView in item.Value)
+                                {
+                                    pkgList.Add(new PackageDependency(updatePkgView.Id, VersionRange.Parse(updatePkgView.Version)));
+                                }
 
-                //                groups.Add(new PackageDependencyGroup(NuGetFramework.Parse(item.Key), pkgList));
-                //            }
-                //        }
-                //        _projModel.PackageInfo.DependencyGroups = groups;
-                //        refreshDepency();
-                //    }
-                //    form.Close();
-                //};
-                //form.ShowDialog();
+                                groups.Add(new PackageDependencyGroup(NuGetFramework.Parse(item.Key), pkgList));
+                            }
+                        }
+                        _projModel.PackageInfo.DependencyGroups = groups;
+                        refreshDepency();
+                    }
+                    form.Close();
+                };
+                form.ShowDialog();
             }
         }
     }
